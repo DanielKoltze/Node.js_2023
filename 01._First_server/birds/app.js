@@ -14,6 +14,7 @@ const birds = [
     {id: "5", race: "Ostrich"}
 ]
 
+
 let ids = birds.length
 
 //get all
@@ -45,17 +46,24 @@ app.post("/birds", (req,res) => {
 app.patch("/birds/:id", (req,res) => {
     const {race} = req.body
     const bird = birds.find(bird => bird.id === req.params.id)
-    if(race){
-        bird.race = race
-        res.send(bird)
+    if(bird && race){
+    bird.race = race
+    res.send(bird)
+    }else{
+        res.status(404).send("Bird wasnt updated")
     }
+
 })
 
 
 app.delete("/birds/:id", (req,res) => {
     const bird = birds.find(bird => bird.id === req.params.id)
+    if(bird){
     birds.splice(birds.findIndex(b => b.id === bird.id),1)
     res.send("bird with id: " + req.params.id + " has been removed")
+    }else{
+        res.status(404).send("Bird wasnt deleted")
+    }
 })
 
 app.listen(8080, () => {
