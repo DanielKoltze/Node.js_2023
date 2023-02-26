@@ -8,8 +8,29 @@ app.use(express.static("public"))
 
 const PORT_NUMBER = 8080
 
-app.get('/', (req,res) => {
+const tanks = [
+    {name: "big tank"},
+    {name: "small tank"}
+]
+let visitorsCount = 0
+
+app.get('/tanks', (req,res) => {
     res.sendFile(__dirname + "/public/frontpage/frontpage.html")
+})
+app.get('/visitors', (req,res) => {
+    res.sendFile(__dirname + "/public/visitors/visitors.html")
+})
+
+app.get('/api/tanks', (req,res) => {
+    res.send({data : tanks})
+})
+
+app.get('/api/visitors', (req,res) => {
+    res.send({ data: visitorsCount })
+})
+
+app.put('/api/visitors', (req,res) => {
+    res.send({ data: ++visitorsCount })
 })
 
 
@@ -21,7 +42,3 @@ app.listen(PORT_NUMBER, (error) => {
     }
 })
 
-
-const obejct = {name: "hej", age: 22, lasdf: "asdf"}
-
-console.log({...obejct, lasdf: "hello"})

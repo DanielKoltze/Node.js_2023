@@ -47,8 +47,13 @@ app.patch("/birds/:id", (req,res) => {
     const {race} = req.body
     const bird = birds.find(bird => bird.id === req.params.id)
     if(bird && race){
-    bird.race = race
-    res.send(bird)
+        bird.race = race
+        res.send(bird)
+        //const foundBird = birds[foundIndex]
+        //Jeg tager først foundbird values, så replacer jeg dem med req.body og så 
+        //tilsidst replace id fra req.body hvis der skulle være et og sætter til det rigtige id
+        //birds[foundBird] = { ...foundBird, ...req.body, id: foundBird.id }
+        //res.send(data: foundBird)
     }else{
         res.status(404).send("Bird wasnt updated")
     }
@@ -66,6 +71,10 @@ app.delete("/birds/:id", (req,res) => {
     }
 })
 
+
+
 app.listen(8080, () => {
     console.log("port on 8080")
 })
+
+//bookmarks
