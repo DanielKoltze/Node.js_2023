@@ -14,39 +14,54 @@
       <p id="clicked-text"></p>
     </div>
     <div id="animals-container"></div>
+
+    <p>
+      time until this assigment has to be handed in: <span id="timer-p"></span>
+    </p>
   </body>
   <!-- <script src="animals.js"></script> -->
-
 
   <script>
     const timestampBtn = document.getElementById("timestamp-btn")
     const clickedBtn = document.getElementById("clicked-btn")
-const clickedText = document.getElementById("clicked-text")
+    const clickedText = document.getElementById("clicked-text")
+    const timerP = document.getElementById("timer-p")
 
-clickedBtn.addEventListener("click", async (e) => {
-  await fetch("/api/clicked", {
-    method: "PUT",
-  })
-  displayClick()
-})
+    clickedBtn.addEventListener("click", async (e) => {
+      await fetch("/api/clicked", {
+        method: "PUT",
+      })
+      displayClick()
+    })
 
-displayClick()
+    displayClick()
 
-async function displayClick() {
-  const data = await fetch("/api/clicked")
-  const numberOfClicked = await data.json()
-  clickedText.innerText = numberOfClicked.data
-}
+    async function displayClick() {
+      const data = await fetch("/api/clicked")
+      const numberOfClicked = await data.json()
+      clickedText.innerText = numberOfClicked.data
+    }
 
-timestampBtn.addEventListener("click", async (e) => {
-  const data = await fetch("/api/timestamps", {
-    method: "POST",
-  })
-})
+    timestampBtn.addEventListener("click", async (e) => {
+      const data = await fetch("/api/timestamps", {
+        method: "POST",
+      })
+    })
+    timeLeftCalc(new Date(2023, 2, 3))
+    setInterval(() => {
+      timeLeftCalc(new Date(2023, 2, 3))
+    }, 1000)
 
-//headers: {
-//    "Content-Type": "application/json",
-//},
-
+    function timeLeftCalc(date) {
+      const now = new Date().getTime()
+      const timeleft = date - now
+      const days = Math.floor(timeleft / (1000 * 60 * 60 * 24))
+      const hours = Math.floor(
+        (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      )
+      const minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((timeleft % (1000 * 60)) / 1000)
+      timerP.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`
+    }
   </script>
 </html>

@@ -51,21 +51,6 @@ app.put('/api/clicked', (req,res) =>{
 
 
 
-const animals = []
-
-app.get('/animals', (req,res) => {
-
-})
-app.post('/animals/:id', (req,res) => {
-    
-})
-app.delete('/animals/:id', (req,res) => {
-    
-})
-app.put('/animals/:id', (req,res) => {
-    
-})
-
 app.listen(8080, error => {
     if (error){
         console.log(error)
