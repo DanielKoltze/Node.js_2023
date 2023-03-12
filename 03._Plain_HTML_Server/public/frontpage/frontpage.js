@@ -4,21 +4,20 @@ const tanksContainer = document.getElementById("tanks-container")
 console.log("fasfadsf")
 
 fetch("http://localhost:8080/api/tanks")
-.then(responce => responce.json())
-.then(result => {
-    result.data.forEach(tank => {
-        result.data.forEach(tank => {
-            const tankDiv = document.createElement("div")
+  .then((responce) => responce.json())
+  .then((result) => {
+    result.data.forEach((tank) => {
+      result.data.forEach((tank) => {
+        const tankDiv = document.createElement("div")
 
-            const tankName = document.createElement("p")
-            tankName.innerText = tank.name || ""
+        const tankName = document.createElement("p")
+        tankName.innerText = tank.name || ""
 
-            tankDiv.appendChild(tankName)
-            tanksContainer.appendChild(tankDiv)
-        })
-    });
-})
-
+        tankDiv.appendChild(tankName)
+        tanksContainer.appendChild(tankDiv)
+      })
+    })
+  })
 
 /*
 const url = 'http://localhost:8080/api';
@@ -47,3 +46,11 @@ const renderTanks = async () => {
 
 renderTanks();
 */
+
+const redirectAnchorTag = document.getElementById("redirect-tast")
+
+redirectAnchorTag.href = "/visitors"
+
+setTimeout(() => {
+  window.location.href = "/visitors"
+}, 4000)

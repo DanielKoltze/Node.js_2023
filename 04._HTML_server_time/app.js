@@ -11,7 +11,7 @@ const timestamps = [
     {id: "1", timestamp: new Date().toUTCString()}
 ]
 
-
+// without the static this would work but not what the html refers to for instance css and/or js
 app.get('/', (req,res) => {
     res.sendFile(__dirname + "/public/animals.html")
 })
