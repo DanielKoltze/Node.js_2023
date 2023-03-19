@@ -4,10 +4,9 @@ async function getActivities() {
   return data
 }
 
-
 async function displayActivities() {
-    const questsH = document.getElementById("quest")
-    const data = await getActivities()
-    questsH.innerText = data.activity
+  const questsH = document.getElementById("quest")
+  const data = await getActivities()
+  questsH.innerText = data.activity
 }
-displayActivities()
+//displayActivities()

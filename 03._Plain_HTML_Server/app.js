@@ -39,6 +39,14 @@ app.get("/api/guards", (req, res) => {
   res.send({ message: "You are not allowed to see the tanks" })
 })
 
+app.get("/proxy", (req, res) => {
+  /*
+  fetch("https://www.google.com")
+    .then((res) => res.text())
+    .then((data) => res.send(data))
+    */
+})
+
 app.listen(PORT_NUMBER, (error) => {
   if (error) {
     console.log(error)

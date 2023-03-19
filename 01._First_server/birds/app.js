@@ -57,7 +57,6 @@ app.patch("/birds/:id", (req,res) => {
     }else{
         res.status(404).send("Bird wasnt updated")
     }
-
 })
 
 

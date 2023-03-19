@@ -2,7 +2,7 @@ import Sentiment from "sentiment"
 import fetch from "node-fetch";
 const sentiment = new Sentiment()
 
-async function getJoke(){
+export default async function getJoke(){
     const URL = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit"
     const res = await fetch(URL)
     const data = await res.json()
@@ -19,6 +19,5 @@ async function getJoke(){
 
 
 
-export default {
-    getJoke
-}
+
+
