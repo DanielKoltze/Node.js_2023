@@ -8,17 +8,32 @@ import fs from "fs"
 
 import templateEngine from "./util/templateEngine.js"
 //components
-const frontpagePath = templateEngine.readPage("./public/pages/frontpage/frontpage.html")
+const frontpagePath = templateEngine.readPage(
+  "./public/pages/frontpage/frontpage.html"
+)
 const frontpagePage = templateEngine.renderPage(frontpagePath)
 const jokesPath = templateEngine.readPage("./public/pages/jokes/jokes.html")
-const jokesPage = templateEngine.renderPage(jokesPath, { 
-    tabTitle: "Jokes",
-    cssLink: '<link rel="stylesheet" href="/assets/ccs/main.css">'
+const jokesPage = templateEngine.renderPage(jokesPath, {
+  tabTitle: "Jokes",
+  cssLink: '<link rel="stylesheet" href="/assets/ccs/main.css">',
 })
-const irlQuestsPath = templateEngine.readPage("./public/pages/IRLQuests/IRLQuests.html")
-const irlQuestsPage = templateEngine.renderPage(irlQuestsPath, { tabTitle: "IRLQuests" })
+const irlQuestsPath = templateEngine.readPage(
+  "./public/pages/IRLQuests/IRLQuests.html"
+)
+const irlQuestsPage = templateEngine.renderPage(irlQuestsPath, {
+  tabTitle: "IRLQuests",
+})
 
+const contactPagePath = templateEngine.readPage(
+  "./public/pages/contact/contact.html"
+)
+const contactPagePage = templateEngine.renderPage(contactPagePath, {
+  tabTitle: "Contact",
+})
 app.use(express.static("public"))
+
+//guess men gør det når man sender data i form
+app.use(express.urlencoded({extended: true}))
 
 import jokes from "./util/jokes.js"
 //console.log(await jokes.getJoke())
@@ -34,7 +49,16 @@ app.get("/jokes", (req, res) => {
   res.send(jokesPage)
 })
 
-const PORT = 8080
+app.get("/contact", (req, res) => {
+  res.send(contactPagePage)
+})
+
+app.post("/api/contact", (req, res) => {
+  console.log(req.body)
+  res.redirect("/")
+})
+
+const PORT = process.env.PORT || 8080
 app.listen(PORT, (error) => {
   if (error) {
     console.log(error)

@@ -1,0 +1,29 @@
+<h2>Leave some feedback</h2>
+
+<form action="/api/contact" method="post">
+  <label>Subject</label>
+  <input
+    type="text"
+    placeholder="Enter subject"
+    value="somehing"
+    name="subject"
+  />
+  <label>Name</label>
+  <input type="text" placeholder="Enter name" value="daniel" name="name" />
+  <label>Email</label>
+  <input
+    type="email"
+    placeholder="Enter email"
+    value="daniel@gmail.com"
+    name="email"
+  />
+  <label>Message</label>
+  <textarea
+    cols="20"
+    rows="10"
+    type="text"
+    placeholder="Enter message"
+    name="message"
+  ></textarea>
+  <input type="submit" />
+</form>
