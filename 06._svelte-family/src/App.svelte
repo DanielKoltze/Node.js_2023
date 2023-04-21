@@ -1,24 +1,37 @@
 <script>
+  import { onMount } from "svelte";
+
+  import { BASE_URL } from "./store/urlDomain";
+
   import Home from "./components/Home/Home.svelte";
   import Pibling from "./components/Pibling/Pibling.svelte";
+
+  onMount(async () => {
+    const response = await fetch(`${BASE_URL}/piblings`)
+    const piblingsResponse = await response.json()
+    console.log(piblingsResponse)
+  })
 
   const piblings = ["John", "Mark"]
   const niblings = [
     {
       id: 1,
       name: "Ann",
-      isGirl: true
+      isGirl: true,
+      cookies: []
     },
     {
       id: 2,
       name: "Amelie",
       isGirl: true,
-      blackSheep: "medium-black-sheep"
+      blackSheep: "medium-black-sheep",
+      cookies: []
     },
     {
       id: 3,
       name: "Peter",
-      blackSheep: "ultra-black-sheep"
+      blackSheep: "ultra-black-sheep",
+      cookies: []
     }
   ]
 

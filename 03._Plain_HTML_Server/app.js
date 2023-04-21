@@ -1,4 +1,4 @@
-const express = require("express")
+import express from "express"
 const app = express()
 
 //at den static folder med frontend ligger i public mappen
@@ -7,27 +7,12 @@ app.use(express.static("public"))
 
 const PORT_NUMBER = 8080
 
-const tanks = [{ name: "big tank" }, { name: "small tank" }]
-let visitorsCount = 0
+import tankRouter from "./routers/tankRouter.js"
+app.use(tankRouter)
 
-app.get("/tanks", (req, res) => {
-  res.sendFile(__dirname + "/public/frontpage/frontpage.html")
-})
-app.get("/visitors", (req, res) => {
-  res.sendFile(__dirname + "/public/visitors/visitors.html")
-})
+import visitorsRouter from "./routers/visitorsRouter.js"
+app.use(visitorsRouter)
 
-app.get("/api/tanks", (req, res) => {
-  res.send({ data: tanks })
-})
-
-app.get("/api/visitors", (req, res) => {
-  res.send({ data: visitorsCount })
-})
-
-app.put("/api/visitors", (req, res) => {
-  res.send({ data: ++visitorsCount })
-})
 
 //redirect from server side
 //vigigt at man kun sender en request og en response
